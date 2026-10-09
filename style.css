@@ -58,14 +58,37 @@ section{padding-block:3rem;border-top:1px solid var(--line);display:flex;flex-di
 .links a{border:1px solid var(--line);background:var(--surface);padding:.45rem .95rem;border-radius:999px;text-decoration:none;font-size:.95rem}
 .links a.primary{background:var(--grid);border-color:var(--grid);color:var(--grid-ink);font-weight:500}
 
-.net{width:100%;height:auto;max-width:460px;justify-self:center}
-.net .edge{stroke:var(--line);stroke-width:2}
-.net .flow{stroke:var(--spark);stroke-width:3;stroke-dasharray:6 10;animation:flow 1.6s linear infinite}
-.net .node{fill:var(--surface);stroke:var(--grid);stroke-width:2.5}
-.net .hub{fill:var(--grid)}
-.net text{font:500 11px var(--font-body);fill:var(--muted)}
-@keyframes flow{to{stroke-dashoffset:-32}}
-@media (prefers-reduced-motion:reduce){.net .flow{animation:none}}
+/* hero drawing: my photo as the hub of a street-sized grid */
+.hub-figure{margin:0;justify-self:center;width:100%;max-width:440px;display:flex;flex-direction:column;gap:.75rem}
+.hub-figure figcaption{color:var(--muted);font-size:.88rem;text-align:center;max-width:40ch;margin-inline:auto}
+.net{width:100%;height:auto;display:block;overflow:visible}
+
+.net .wires path{fill:none;stroke:var(--line);stroke-width:2.5;stroke-linecap:round;
+  stroke-dasharray:1;stroke-dashoffset:0;animation:wire-in .9s cubic-bezier(.3,0,.2,1) both}
+.net .wires path.peer{stroke-dasharray:.02 .035;animation:none}
+.net .wires path:nth-child(2){animation-delay:.12s}
+.net .wires path:nth-child(3){animation-delay:.24s}
+.net .wires path:nth-child(4){animation-delay:.36s}
+@keyframes wire-in{from{stroke-dashoffset:1}}
+
+.net .pk circle{fill:var(--spark)}
+.net .pk .halo{opacity:.28}
+
+.net .ring{fill:none;stroke:var(--grid);stroke-width:2.5}
+.net .pulse{fill:none;stroke:var(--grid);stroke-width:2;transform-origin:220px 205px;
+  animation:hub-pulse 2.8s cubic-bezier(.2,.6,.3,1) 2s infinite;opacity:0}
+@keyframes hub-pulse{0%{opacity:.45;transform:scale(1)}100%{opacity:0;transform:scale(1.18)}}
+
+.net .node > circle{fill:var(--surface);stroke:var(--grid);stroke-width:2.5}
+.net .ico{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.net .ico.sun{stroke:var(--spark)}
+.net .fillbar{fill:var(--spark);transform-box:fill-box;transform-origin:left center;animation:charge 6s ease-in-out infinite}
+@keyframes charge{0%,100%{transform:scaleX(.35)}50%{transform:scaleX(1.6)}}
+.net text{font:500 13px var(--font-body);fill:var(--muted)}
+
+@media (prefers-reduced-motion:reduce){
+  .net .wires path,.net .pulse,.net .fillbar{animation:none}
+}
 
 /* "right now" row on home */
 .now{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
@@ -114,7 +137,8 @@ footer{padding-block:2.5rem 3rem;border-top:1px solid var(--line);color:var(--mu
 footer .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
 
 @media (max-width:820px){
-  .hero{grid-template-columns:1fr;padding-block:2.5rem 2.5rem}
+  .hero{grid-template-columns:1fr;padding-block:2rem 2.5rem}
+  .hub-figure{order:-1;max-width:300px}
   .themes,.two,.now{grid-template-columns:1fr}
   .topic{grid-template-columns:1fr;gap:1rem}
   .timeline li{grid-template-columns:1fr;gap:.25rem}
