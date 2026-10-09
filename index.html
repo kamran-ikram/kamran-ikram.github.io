@@ -34,36 +34,37 @@
 
   <div class="hero">
     <div>
+      <img class="portrait" src="images/kamran-ikram.jpg" width="140" height="140" alt="Portrait of Mohammad Kamran Ikram">
       <h1>Mohammad Kamran Ikram</h1>
       <p class="role">PhD researcher and sessional lecturer, Swinburne University of Technology, Melbourne</p>
       <p class="lede">I study how electric cars and homes that share power with each other can keep the electricity grid steady as we move to net zero.</p>
       <div class="links">
         <a class="primary" href="cv.pdf">Download CV</a>
-        <a href="https://scholar.google.com/">Google Scholar</a><!-- TODO: paste your Google Scholar profile link -->
+        <a href="https://scholar.google.com/citations?user=P8dXurkAAAAJ&amp;hl=en">Google Scholar</a>
+        <a href="https://www.linkedin.com/in/mohdkamranikram">LinkedIn</a>
+        <a href="https://www.researchgate.net/profile/Mohammad-Kamran-Ikram">ResearchGate</a>
         <a href="https://orcid.org/0000-0001-9830-3517">ORCID</a>
-        <a href="https://www.linkedin.com/">LinkedIn</a><!-- TODO: paste your LinkedIn profile link -->
       </div>
     </div>
 
     <figure class="hub-figure">
       <svg class="net" id="net" viewBox="0 0 440 410" role="img" aria-labelledby="net-cap">
         <defs>
-          <clipPath id="face-clip"><circle cx="220" cy="205" r="80"/></clipPath>
           <!-- the routes energy travels along -->
-          <path id="r-solar"  d="M91 93 L152 146"/>
-          <path id="r-car"    d="M288 264 L349 317"/>
-          <path id="r-batt"   d="M349 93 L288 146"/>
-          <path id="r-nbr"    d="M152 264 L91 317"/>
+          <path id="r-solar"  d="M91 93 L167 159"/>
+          <path id="r-car"    d="M273 251 L349 317"/>
+          <path id="r-batt"   d="M349 93 L273 159"/>
+          <path id="r-nbr"    d="M167 251 L91 317"/>
           <path id="r-p2p"    d="M70 104 L70 306"/>
           <path id="r-v2g"    d="M370 306 L370 104"/>
         </defs>
 
         <!-- wires -->
         <g class="wires">
-          <path d="M91 93 L152 146" pathLength="1"/>
-          <path d="M349 93 L288 146" pathLength="1"/>
-          <path d="M152 264 L91 317" pathLength="1"/>
-          <path d="M288 264 L349 317" pathLength="1"/>
+          <path d="M91 93 L167 159" pathLength="1"/>
+          <path d="M349 93 L273 159" pathLength="1"/>
+          <path d="M167 251 L91 317" pathLength="1"/>
+          <path d="M273 251 L349 317" pathLength="1"/>
           <path d="M70 104 L70 306" pathLength="1" class="peer"/>
           <path d="M370 306 L370 104" pathLength="1" class="peer"/>
         </g>
@@ -90,10 +91,13 @@
             <animate attributeName="opacity" dur="3.2s" begin="3.4s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;.12;.62;.72;1"/></g>
         </g>
 
-        <!-- the hub: me -->
-        <circle class="pulse" cx="220" cy="205" r="90"/>
-        <circle class="ring" cx="220" cy="205" r="90"/>
-        <image href="images/kamran-ikram.jpg" x="140" y="125" width="160" height="160" clip-path="url(#face-clip)" preserveAspectRatio="xMidYMid slice"/>
+        <!-- the hub: the local grid, drawn as a transformer -->
+        <circle class="pulse" cx="220" cy="205" r="70"/>
+        <circle class="ring" cx="220" cy="205" r="70"/>
+        <circle class="core" cx="220" cy="205" r="58"/>
+        <circle class="xfmr" cx="211" cy="195" r="14"/>
+        <circle class="xfmr" cx="229" cy="195" r="14"/>
+        <text class="hub-label" x="220" y="234" text-anchor="middle">Local grid</text>
 
         <!-- homes, battery, car -->
         <g class="node" transform="translate(70 75)">
@@ -164,7 +168,10 @@
 </main>
 
 <footer>
-  <div class="wrap"><span>Mohammad Kamran Ikram, Melbourne, Australia</span><span>Updated October 2026</span></div>
+  <div class="wrap">
+    <span>Mohammad Kamran Ikram, Melbourne, Australia</span>
+    <span class="foot-links"><a href="https://scholar.google.com/citations?user=P8dXurkAAAAJ&amp;hl=en">Google Scholar</a> <a href="https://www.linkedin.com/in/mohdkamranikram">LinkedIn</a> <a href="https://www.researchgate.net/profile/Mohammad-Kamran-Ikram">ResearchGate</a> <a href="https://orcid.org/0000-0001-9830-3517">ORCID</a></span>
+  </div>
 </footer>
 
 <script>
