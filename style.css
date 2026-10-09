@@ -149,6 +149,18 @@ section{padding-block:3rem;border-top:1px solid var(--line);display:flex;flex-di
 
 .email{font-size:1.15rem;font-weight:500}
 
+/* organisations strip */
+.orgs-intro{color:var(--muted)}
+.orgs{list-style:none;margin:.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+  border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.orgs li{border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0}
+.orgs a{display:flex;flex-direction:column;gap:.15rem;height:100%;padding:1.4rem 1.1rem;text-decoration:none;color:var(--ink);
+  transition:background-color .2s ease}
+.orgs a:hover{background:var(--surface)}
+.orgs .org-name{font-family:var(--font-display);font-weight:600;font-size:1.45rem;line-height:1.1}
+.orgs .org-sub{font-size:.85rem;color:var(--muted);line-height:1.35}
+.orgs .org-meta{margin-top:auto;padding-top:.9rem;font-size:.82rem;color:var(--grid);font-weight:500}
+
 footer{padding-block:2.5rem 3rem;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
 footer .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
 .foot-links{display:flex;flex-wrap:wrap;gap:1.1rem}
@@ -161,6 +173,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
   .pagehead.split{grid-template-columns:1fr;gap:1.5rem;padding-block:2.5rem 2rem}
   .about-split{grid-template-columns:1fr}
   .about-photo{max-width:280px}
+  .orgs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .orgs li:last-child{grid-column:1/-1}
   .topic{grid-template-columns:1fr;gap:1rem}
   .timeline li{grid-template-columns:1fr;gap:.25rem}
   .bar .wrap{flex-wrap:wrap;padding-block:.6rem;gap:.4rem 1.25rem}
