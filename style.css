@@ -1,7 +1,7 @@
 /* Layout: one calm column with a sticky top bar; the home page opens with a small drawing of a local power network. */
 :root{
   --bg:#F3F6F5; --surface:#FFFFFF; --ink:#16232E; --muted:#526170;
-  --line:#D5DEDC; --grid:#0E6B73; --grid-ink:#FFFFFF; --spark:#B97F0A; --logo-bg:#FFFFFF;
+  --line:#D5DEDC; --grid:#0E6B73; --grid-ink:#FFFFFF; --spark:#B97F0A; --logo-bg:#FFFFFF; --alert:#C2412D;
   --font-display:"Newsreader",Georgia,"Times New Roman",serif;
   --font-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:light only;
@@ -61,39 +61,50 @@ section{padding-block:3rem;border-top:1px solid var(--line);display:flex;flex-di
 .links a{border:1px solid var(--line);background:var(--surface);padding:.45rem .95rem;border-radius:999px;text-decoration:none;font-size:.95rem}
 .links a.primary{background:var(--grid);border-color:var(--grid);color:var(--grid-ink);font-weight:500}
 
-/* hero drawing: my photo as the hub of a street-sized grid */
-.hub-figure{margin:0;justify-self:center;width:100%;max-width:440px;display:flex;flex-direction:column;gap:.75rem}
-.hub-figure figcaption{color:var(--muted);font-size:.88rem;text-align:center;max-width:40ch;margin-inline:auto}
-.net{width:100%;height:auto;display:block;overflow:visible}
+/* hero drawing: five EVs plug in at 6 pm */
+.hub-figure{margin:0;justify-self:center;width:100%;max-width:440px;display:flex;flex-direction:column;gap:.9rem}
+.evs{width:100%;height:auto;display:block;overflow:hidden}
+.evs text{font-family:var(--font-body)}
+.evs .g-label{font-size:13px;font-weight:500;fill:var(--muted)}
+.evs .g-warn{font-size:13px;font-weight:600;fill:var(--alert);opacity:0;transition:opacity .3s ease}
+.evs.over .g-warn{opacity:1;animation:warn 1s steps(2,jump-none) infinite}
+@keyframes warn{50%{opacity:.35}}
+.evs .g-track{fill:var(--line)}
+.evs .g-fill{fill:var(--grid);transition:fill .4s ease}
+.evs.over .g-fill{fill:var(--alert)}
+.evs .g-limit{stroke:var(--ink);stroke-width:2;stroke-dasharray:3 3}
+.evs .g-limit-label{font-size:12px;fill:var(--ink)}
 
-.net .wires path{fill:none;stroke:var(--line);stroke-width:2.5;stroke-linecap:round;
-  stroke-dasharray:1;stroke-dashoffset:0;animation:wire-in .9s cubic-bezier(.3,0,.2,1) both}
-.net .wires path.peer{stroke-dasharray:.02 .035;animation:none}
-.net .wires path:nth-child(2){animation-delay:.12s}
-.net .wires path:nth-child(3){animation-delay:.24s}
-.net .wires path:nth-child(4){animation-delay:.36s}
-@keyframes wire-in{from{stroke-dashoffset:1}}
+.evs .bay{stroke:var(--line);stroke-width:2}
+.evs .post rect{fill:var(--grid)}
+.evs .post-bolt{fill:var(--grid-ink)}
+.evs .cable{fill:none;stroke:var(--line);stroke-width:3;stroke-linecap:round;opacity:0;transition:opacity .4s ease,stroke .4s ease}
+.evs .cable.on{opacity:1}
+.evs .cable.live{stroke:var(--muted)}
+.evs .flow{fill:var(--spark)}
 
-.net .pk circle{fill:var(--spark)}
-.net .pk .halo{opacity:.28}
+.evs .car .body{fill:var(--surface);stroke:var(--grid);stroke-width:2.5}
+.evs .car .glass{fill:var(--line)}
+.evs .car-bolt{fill:var(--spark);transition:opacity .3s ease}
 
-.net .ring{fill:none;stroke:var(--grid);stroke-width:2.5}
-.net .core{fill:var(--grid)}
-.net .xfmr{fill:none;stroke:var(--grid-ink);stroke-width:2.5}
-.net .hub-label{font:600 13px var(--font-body);fill:var(--grid-ink)}
-.net .pulse{fill:none;stroke:var(--grid);stroke-width:2;transform-origin:220px 205px;
-  animation:hub-pulse 2.8s cubic-bezier(.2,.6,.3,1) 2s infinite;opacity:0}
-@keyframes hub-pulse{0%{opacity:.45;transform:scale(1)}100%{opacity:0;transform:scale(1.18)}}
+.evs .soc-track{fill:var(--line)}
+.evs .soc-fill{fill:var(--spark)}
+.evs .soc-fill.full{fill:var(--grid)}
+.evs .pct{font-size:13px;font-weight:600;fill:var(--ink);font-variant-numeric:tabular-nums}
+.evs .kw{font-size:12px;fill:var(--muted);font-variant-numeric:tabular-nums}
 
-.net .node > circle{fill:var(--surface);stroke:var(--grid);stroke-width:2.5}
-.net .ico{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.net .ico.sun{stroke:var(--spark)}
-.net .fillbar{fill:var(--spark);transform-box:fill-box;transform-origin:left center;animation:charge 6s ease-in-out infinite}
-@keyframes charge{0%,100%{transform:scaleX(.35)}50%{transform:scaleX(1.6)}}
-.net text{font:500 13px var(--font-body);fill:var(--muted)}
+.day-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem}
+.day-steps button{display:flex;flex-direction:column;gap:.4rem;padding:.3rem 0;border:0;background:none;cursor:pointer;
+  font:500 .88rem var(--font-body);color:var(--muted);text-align:left}
+.day-steps button:hover,.day-steps button[aria-selected="true"]{color:var(--ink)}
+.day-steps button:focus-visible{outline:2px solid var(--spark);outline-offset:3px;border-radius:2px}
+.st-bar{display:block;height:3px;border-radius:2px;background:var(--line);overflow:hidden}
+.st-bar i{display:block;height:100%;width:0;background:var(--grid)}
+#ev-cap{color:var(--muted);font-size:.92rem;line-height:1.5;min-height:4.6em}
 
 @media (prefers-reduced-motion:reduce){
-  .net .wires path,.net .pulse,.net .fillbar{animation:none}
+  .evs.over .g-warn{animation:none}
+  .evs .cable,.evs .car-bolt,.evs .g-fill,.evs .g-warn{transition:none}
 }
 
 /* "right now" row on home */

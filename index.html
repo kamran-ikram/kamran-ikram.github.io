@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=7">
 <meta property="og:title" content="Mohammad Kamran Ikram">
 <meta property="og:description" content="PhD researcher at Swinburne University. Electric cars, neighbours sharing energy, and restarting the grid after blackouts.">
 <meta property="og:image" content="https://kamran-ikram.github.io/images/share.jpg">
@@ -49,87 +49,25 @@
       </div>
     </div>
 
-    <figure class="hub-figure">
-      <svg class="net" id="net" viewBox="0 0 440 410" role="img" aria-labelledby="net-cap">
-        <defs>
-          <!-- the routes energy travels along -->
-          <path id="r-solar"  d="M91 93 L167 159"/>
-          <path id="r-car"    d="M273 251 L349 317"/>
-          <path id="r-batt"   d="M349 93 L273 159"/>
-          <path id="r-nbr"    d="M167 251 L91 317"/>
-          <path id="r-p2p"    d="M70 104 L70 306"/>
-          <path id="r-v2g"    d="M370 306 L370 104"/>
-        </defs>
-
-        <!-- wires -->
-        <g class="wires">
-          <path d="M91 93 L167 159" pathLength="1"/>
-          <path d="M349 93 L273 159" pathLength="1"/>
-          <path d="M167 251 L91 317" pathLength="1"/>
-          <path d="M273 251 L349 317" pathLength="1"/>
-          <path d="M70 104 L70 306" pathLength="1" class="peer"/>
-          <path d="M370 306 L370 104" pathLength="1" class="peer"/>
-        </g>
-
-        <!-- energy packets: each one travels its route, then fades -->
-        <g class="packets">
-          <g class="pk" opacity="0"><circle r="8" class="halo"/><circle r="4"/>
-            <animateMotion dur="2.8s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1;1" keyTimes="0;.7;1" keySplines=".45 0 .25 1;0 0 1 1"><mpath href="#r-solar"/></animateMotion>
-            <animate attributeName="opacity" dur="2.8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;.12;.62;.72;1"/></g>
-          <g class="pk" opacity="0"><circle r="8" class="halo"/><circle r="4"/>
-            <animateMotion dur="2.8s" begin="1.4s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1;1" keyTimes="0;.7;1" keySplines=".45 0 .25 1;0 0 1 1"><mpath href="#r-car"/></animateMotion>
-            <animate attributeName="opacity" dur="2.8s" begin="1.4s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;.12;.62;.72;1"/></g>
-          <g class="pk" opacity="0"><circle r="8" class="halo"/><circle r="4"/>
-            <animateMotion dur="3.6s" begin=".7s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1;1" keyTimes="0;.7;1" keySplines=".45 0 .25 1;0 0 1 1"><mpath href="#r-p2p"/></animateMotion>
-            <animate attributeName="opacity" dur="3.6s" begin=".7s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;.1;.64;.72;1"/></g>
-          <g class="pk" opacity="0"><circle r="8" class="halo"/><circle r="4"/>
-            <animateMotion dur="3.2s" begin="2.2s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1;1" keyTimes="0;.7;1" keySplines=".45 0 .25 1;0 0 1 1"><mpath href="#r-batt"/></animateMotion>
-            <animate attributeName="opacity" dur="3.2s" begin="2.2s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;.12;.62;.72;1"/></g>
-          <g class="pk" opacity="0"><circle r="8" class="halo"/><circle r="4"/>
-            <animateMotion dur="3.6s" begin="2.6s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1;1" keyTimes="0;.7;1" keySplines=".45 0 .25 1;0 0 1 1"><mpath href="#r-v2g"/></animateMotion>
-            <animate attributeName="opacity" dur="3.6s" begin="2.6s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;.1;.64;.72;1"/></g>
-          <g class="pk" opacity="0"><circle r="8" class="halo"/><circle r="4"/>
-            <animateMotion dur="3.2s" begin="3.4s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1;1" keyTimes="0;.7;1" keySplines=".45 0 .25 1;0 0 1 1"><mpath href="#r-nbr"/></animateMotion>
-            <animate attributeName="opacity" dur="3.2s" begin="3.4s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;.12;.62;.72;1"/></g>
-        </g>
-
-        <!-- the hub: the local grid, drawn as a transformer -->
-        <circle class="pulse" cx="220" cy="205" r="70"/>
-        <circle class="ring" cx="220" cy="205" r="70"/>
-        <circle class="core" cx="220" cy="205" r="58"/>
-        <circle class="xfmr" cx="211" cy="195" r="14"/>
-        <circle class="xfmr" cx="229" cy="195" r="14"/>
-        <text class="hub-label" x="220" y="234" text-anchor="middle">Local grid</text>
-
-        <!-- homes, battery, car -->
-        <g class="node" transform="translate(70 75)">
-          <circle r="28"/>
-          <path class="ico" d="M-12 3 L0 -8 L12 3 M-9 1 V12 H9 V1"/>
-          <path class="ico sun" d="M8 -14 m-3 0 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0"/>
-        </g>
-        <g class="node" transform="translate(370 75)">
-          <circle r="28"/>
-          <rect class="ico" x="-12" y="-7" width="22" height="14" rx="2"/>
-          <path class="ico" d="M10 -3 H13 V3 H10"/>
-          <rect class="fillbar" x="-9" y="-4" width="10" height="8" rx="1"/>
-        </g>
-        <g class="node" transform="translate(70 335)">
-          <circle r="28"/>
-          <path class="ico" d="M-12 3 L0 -8 L12 3 M-9 1 V12 H9 V1 M-3 12 V5 H3 V12"/>
-        </g>
-        <g class="node" transform="translate(370 335)">
-          <circle r="28"/>
-          <path class="ico" d="M-14 5 V0 L-9 -7 H8 L13 0 H14 V5 Z"/>
-          <circle class="ico" cx="-7" cy="6" r="3"/>
-          <circle class="ico" cx="7" cy="6" r="3"/>
-        </g>
-
-        <text x="70" y="30" text-anchor="middle">Solar home</text>
-        <text x="370" y="30" text-anchor="middle">Home battery</text>
-        <text x="70" y="394" text-anchor="middle">Neighbour</text>
-        <text x="370" y="394" text-anchor="middle">Electric car</text>
+    <figure class="hub-figure" id="ev">
+      <svg class="evs" id="evs" viewBox="0 0 440 350" role="img" aria-label="Animation: five electric cars plug in at 6 pm. Without control the street transformer overloads. With smart charging the emptiest batteries charge first and the load stays under the limit." data-phase="arrive">
+        <!-- street transformer load gauge -->
+        <text class="g-label" x="20" y="24">Street transformer load</text>
+        <text class="g-warn" x="420" y="24" text-anchor="end">Overloaded</text>
+        <rect class="g-track" x="20" y="34" width="400" height="14" rx="7"/>
+        <rect class="g-fill" id="g-fill" x="20" y="34" width="80" height="14" rx="7"/>
+        <line class="g-limit" x1="324" y1="28" x2="324" y2="54"/>
+        <text class="g-limit-label" x="324" y="68" text-anchor="middle">Limit</text>
+        <!-- parking bays, chargers, cars are drawn by the script -->
+        <g id="bays"></g>
       </svg>
-      <figcaption id="net-cap">A street-sized grid. Solar flows to the grid and straight to a neighbour, the grid charges a car, and the car can give power back.</figcaption>
+
+      <div class="day-steps" role="tablist" aria-label="Charging scenarios">
+        <button type="button" role="tab" id="step-0" aria-selected="true"><span>Plug in</span><span class="st-bar"><i></i></span></button>
+        <button type="button" role="tab" id="step-1" aria-selected="false"><span>No control</span><span class="st-bar"><i></i></span></button>
+        <button type="button" role="tab" id="step-2" aria-selected="false"><span>Smart charging</span><span class="st-bar"><i></i></span></button>
+      </div>
+      <figcaption id="ev-cap">6 pm. Five neighbours get home and plug in their electric cars at the same time.</figcaption>
     </figure>
   </div>
 
@@ -194,21 +132,179 @@
 </footer>
 
 <script>
-  // Hold the drawing still for people who turn off motion, and when it's scrolled out of view.
+  // Five EVs plug in at 6 pm. Uncontrolled charging overloads the street transformer;
+  // smart charging gives the emptiest batteries priority and keeps the load under the limit.
   (function () {
-    var svg = document.getElementById('net');
-    if (!svg || !svg.pauseAnimations) return;
-    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
-    function apply(visible) {
-      if (still && still.matches) { svg.setCurrentTime(2); svg.pauseAnimations(); return; }
-      if (!visible) svg.pauseAnimations();
-      else svg.unpauseAnimations();
+    var svg = document.getElementById('evs');
+    if (!svg) return;
+    var NS = 'http://www.w3.org/2000/svg';
+    var bays = document.getElementById('bays');
+    var gFill = document.getElementById('g-fill');
+    var cap = document.getElementById('ev-cap');
+    var steps = [0, 1, 2].map(function (i) { return document.getElementById('step-' + i); });
+
+    var MAXLOAD = 50, LIMIT = 38, BASE = 8, FULL = 7, BUDGET = LIMIT - BASE - 2;
+    var RATE = 1.45;                       // % of battery per kW per second
+    var PARK = 232, START_Y = 276;
+    var SOC0 = [15, 40, 25, 55, 30];
+    var PHASES = [
+      { key: 'arrive', dur: 3200, step: 0, cap: '6 pm. Five neighbours get home and plug in their electric cars at the same time.' },
+      { key: 'dumb',   dur: 4200, step: 1, cap: 'Without control, every car charges at full power. The street transformer is pushed past its limit.' },
+      { key: 'smart',  dur: 9800, step: 2, cap: 'With smart charging, the emptiest batteries get the most power and fuller ones slow down. The load stays under the limit.' },
+      { key: 'done',   dur: 3000, step: 2, cap: 'By morning every car is charged, and the transformer never went over its limit.' }
+    ];
+
+    function el(tag, attrs, parent) {
+      var e = document.createElementNS(NS, tag);
+      for (var k in attrs) e.setAttribute(k, attrs[k]);
+      (parent || bays).appendChild(e);
+      return e;
     }
-    apply(true);
-    if (still && still.addEventListener) still.addEventListener('change', function () { apply(true); });
+
+    // build the bays
+    var cars = SOC0.map(function (s, i) {
+      var cx = 60 + 80 * i;
+      el('line', { 'class': 'bay', x1: cx - 40, y1: 150, x2: cx - 40, y2: 282 });
+      if (i === 4) el('line', { 'class': 'bay', x1: cx + 40, y1: 150, x2: cx + 40, y2: 282 });
+      var post = el('g', { 'class': 'post', transform: 'translate(' + cx + ' 100)' });
+      el('rect', { x: -9, y: -16, width: 18, height: 28, rx: 3 }, post);
+      el('path', { 'class': 'post-bolt', d: 'M1 -11 L-4 -1 H0 L-1 7 L4 -3 H0 Z' }, post);
+      var cable = el('path', { 'class': 'cable', d: 'M' + cx + ' 112 C' + (cx + 14) + ' 140 ' + (cx - 14) + ' 168 ' + cx + ' 194' });
+      var dots = [el('circle', { 'class': 'flow', r: 3.2 }), el('circle', { 'class': 'flow', r: 3.2 })];
+      var car = el('g', { 'class': 'car' });
+      el('rect', { 'class': 'body', x: -20, y: -37, width: 40, height: 74, rx: 12 }, car);
+      el('rect', { 'class': 'glass', x: -15, y: -22, width: 30, height: 13, rx: 4 }, car);
+      el('rect', { 'class': 'glass', x: -15, y: 15, width: 30, height: 9, rx: 3 }, car);
+      var bolt = el('path', { 'class': 'car-bolt', d: 'M2 -6 L-5 3 H0 L-2 10 L5 1 H0 Z' }, car);
+      el('rect', { 'class': 'soc-track', x: cx - 24, y: 290, width: 48, height: 8, rx: 4 });
+      var socFill = el('rect', { 'class': 'soc-fill', x: cx - 24, y: 290, width: 10, height: 8, rx: 4 });
+      var pct = el('text', { 'class': 'pct', x: cx, y: 318, 'text-anchor': 'middle' });
+      var kw = el('text', { 'class': 'kw', x: cx, y: 336, 'text-anchor': 'middle' });
+      return { cx: cx, i: i, soc: s, socFrom: s, y: START_Y, power: 0, flow: Math.random(),
+               cable: cable, dots: dots, car: car, bolt: bolt, socFill: socFill, pct: pct, kw: kw };
+    });
+
+    var phase = 0, t = 0, gauge = BASE, last = null, running = true;
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function ease(x) { x = Math.max(0, Math.min(1, x)); return 1 - Math.pow(1 - x, 3); }
+    function lerp(a, b, f) { return a + (b - a) * f; }
+
+    function allocate() {
+      // share the spare capacity under the limit: emptier batteries get more power, fuller ones slow down
+      var need = cars.map(function (c) { return Math.max(0, 100 - c.soc); });
+      var w = need.map(function (n) { return Math.pow(n, 1.5); });
+      var left = BUDGET, open = cars.map(function (c, i) { return need[i] > 0.5; });
+      cars.forEach(function (c) { c.power = 0; });
+      for (var pass = 0; pass < 3 && left > 0.01; pass++) {
+        var sum = 0;
+        cars.forEach(function (c, i) { if (open[i]) sum += w[i]; });
+        if (!sum) break;
+        var given = 0;
+        cars.forEach(function (c, i) {
+          if (!open[i]) return;
+          var add = Math.min(FULL - c.power, left * w[i] / sum);
+          c.power += add; given += add;
+          if (c.power >= FULL - 0.01) open[i] = false;
+        });
+        left -= given;
+      }
+    }
+
+    function setPhase(i) {
+      phase = i; t = 0;
+      var p = PHASES[i];
+      svg.setAttribute('data-phase', p.key);
+      cap.textContent = p.cap;
+      steps.forEach(function (b, j) {
+        b.setAttribute('aria-selected', j === p.step ? 'true' : 'false');
+        b.querySelector('i').style.width = j < p.step ? '100%' : '0%';
+      });
+      cars.forEach(function (c) {
+        if (p.key === 'arrive') { c.soc = SOC0[c.i]; c.y = START_Y; }
+        else if (c.y > PARK) c.y = PARK;
+        if (p.key === 'dumb') c.soc = SOC0[c.i];
+        c.socFrom = c.soc;
+      });
+    }
+
+    function step(dt) {
+      var p = PHASES[phase];
+      t += dt;
+      cars.forEach(function (c) {
+        if (p.key === 'arrive') {
+          c.y = lerp(START_Y, PARK, ease((t - c.i * 280) / 1300));
+          c.power = 0;
+        } else if (p.key === 'dumb') {
+          c.power = c.soc >= 99.5 ? 0 : FULL;
+        } else if (p.key === 'done') {
+          c.power = 0;
+          if (t > p.dur - 1100) c.y = lerp(PARK, START_Y, ease((t - (p.dur - 1100) - c.i * 90) / 900));
+        }
+      });
+      if (p.key === 'smart') {
+        if (t < 600) cars.forEach(function (c) { c.soc = lerp(c.socFrom, SOC0[c.i], ease(t / 600)); c.power = 0; });
+        else allocate();
+      }
+      cars.forEach(function (c) { c.soc = Math.min(100, c.soc + c.power * RATE * dt / 1000); c.flow += c.power * dt / 2600; });
+      if (t >= p.dur) setPhase((phase + 1) % PHASES.length);
+    }
+
+    function draw() {
+      var load = BASE + cars.reduce(function (s, c) { return s + c.power; }, 0);
+      gauge += (load - gauge) * 0.08;
+      gFill.setAttribute('width', (400 * gauge / MAXLOAD).toFixed(1));
+      svg.classList.toggle('over', gauge > LIMIT + 0.3);
+      cars.forEach(function (c) {
+        var parked = c.y <= PARK + 1;
+        c.car.setAttribute('transform', 'translate(' + c.cx + ' ' + c.y.toFixed(1) + ')');
+        c.car.setAttribute('opacity', (1 - (c.y - PARK) / (START_Y - PARK)).toFixed(2));
+        c.cable.classList.toggle('on', parked);
+        c.cable.classList.toggle('live', c.power > 0);
+        c.bolt.style.opacity = c.power > 0 ? 1 : 0;
+        c.dots.forEach(function (d, k) {
+          if (c.power <= 0 || !parked) { d.style.opacity = 0; return; }
+          var f = (c.flow + k * 0.5) % 1, len = c.cable.getTotalLength(), pt = c.cable.getPointAtLength(f * len);
+          d.setAttribute('cx', pt.x.toFixed(1)); d.setAttribute('cy', pt.y.toFixed(1));
+          d.style.opacity = f < 0.12 ? f / 0.12 : f > 0.88 ? (1 - f) / 0.12 : 1;
+        });
+        c.socFill.setAttribute('width', (48 * Math.max(c.soc, 8) / 100).toFixed(1));
+        c.socFill.classList.toggle('full', c.soc >= 99.5);
+        c.pct.textContent = Math.round(c.soc) + '%';
+        c.kw.textContent = !parked && PHASES[phase].key === 'arrive' ? '' :
+          c.soc >= 99.5 ? 'Full' : c.power > 0.05 ? c.power.toFixed(1) + ' kW' : '';
+      });
+      var p = PHASES[phase];
+      if (p.step === phase || p.key === 'smart') steps[p.step].querySelector('i').style.width = (Math.min(1, t / p.dur) * 100).toFixed(1) + '%';
+      if (p.key === 'done') steps[2].querySelector('i').style.width = '100%';
+    }
+
+    function loop(now) {
+      if (last === null) last = now;
+      var dt = Math.min(now - last, 50); last = now;
+      if (running) { step(dt); draw(); }
+      requestAnimationFrame(loop);
+    }
+
+    function showStill(i) {
+      // reduced motion: jump straight to a representative moment of each scenario
+      setPhase(i);
+      var target = i === 0 ? 2000 : i === 1 ? 2500 : 4000;
+      for (var k = 0; k < target; k += 20) step(20);
+      gauge = BASE + cars.reduce(function (s, c) { return s + c.power; }, 0);
+      draw();
+    }
+
+    steps.forEach(function (b, j) {
+      b.addEventListener('click', function () { if (still) showStill(j); else setPhase(j); });
+    });
+
+    if (still) { showStill(2); return; }
+    setPhase(0);
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (e) { apply(e[0].isIntersecting); }).observe(svg);
+      new IntersectionObserver(function (e) { running = e[0].isIntersecting; }).observe(svg);
     }
+    requestAnimationFrame(loop);
   })();
 </script>
 
