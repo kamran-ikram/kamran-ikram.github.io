@@ -125,6 +125,15 @@ a.badge-cover:hover{background:var(--ink)}
 @media (max-width:600px){.featured{grid-template-columns:110px minmax(0,1fr);gap:1.1rem}.featured h2{font-size:1.5rem}}
 @media (prefers-reduced-motion:reduce){.pub-cover img,.feat-cover img{transition:none}}
 
+/* cite buttons */
+.cite{display:inline-block;margin-top:.45rem;padding:.2rem .65rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);
+  color:var(--grid);font:500 .8rem var(--font-body);cursor:pointer}
+.cite:hover{border-color:var(--grid)}
+.cite:focus-visible{outline:2px solid var(--spark);outline-offset:2px}
+.cite.done{background:var(--grid);border-color:var(--grid);color:var(--grid-ink)}
+.bib{margin:.6rem 0 0;padding:.75rem .9rem;background:var(--surface);border:1px solid var(--line);border-radius:6px;
+  font:.78rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;overflow-x:auto;max-width:100%}
+
 /* news */
 .news{list-style:none;margin:0;padding:0;max-width:80ch}
 .news li{display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:1rem;padding-block:.75rem;border-bottom:1px solid var(--line)}
