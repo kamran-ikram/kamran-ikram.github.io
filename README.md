@@ -11,7 +11,7 @@ Five pages that share one style file:
 
 ## Still to add
 
-- `cv.pdf` – your CV, in this same folder
+- `Mohammad-Kamran-Ikram-CV.pdf` – public CV behind the Download CV button
 - Your Google Scholar and LinkedIn links (search the pages for `TODO`)
 
 ## Put it online with GitHub Pages
