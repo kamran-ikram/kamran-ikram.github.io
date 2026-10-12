@@ -23,7 +23,7 @@ p{margin:0;max-width:68ch}
 
 /* top bar */
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
-.bar .wrap{display:flex;gap:1.25rem;align-items:center;min-height:58px;overflow-x:auto}
+.bar .wrap{display:flex;gap:1.25rem;align-items:center;min-height:58px}
 .bar .me{font-family:var(--font-display);font-weight:600;font-size:1.15rem;color:var(--ink);text-decoration:none;margin-right:auto;white-space:nowrap}
 .bar nav{display:flex;gap:1.1rem}
 .bar nav a{white-space:nowrap;text-decoration:none;font-size:.95rem;color:var(--muted);padding-block:.2rem;border-bottom:2px solid transparent}
@@ -145,6 +145,10 @@ a.badge-cover:hover{background:var(--ink)}
 #work .links{margin-top:0}
 @media (max-width:820px){.services{grid-template-columns:1fr}}
 
+/* page not found */
+.notfound{padding-block:4.5rem 5rem}
+.nf-code{font-family:var(--font-display);font-size:4.5rem;line-height:1;color:var(--grid);font-weight:600}
+
 /* news */
 .news{list-style:none;margin:0;padding:0;max-width:80ch}
 .news li{display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:1rem;padding-block:.75rem;border-bottom:1px solid var(--line)}
@@ -152,11 +156,6 @@ a.badge-cover:hover{background:var(--ink)}
 .news time{color:var(--grid);font-weight:600;font-size:.93rem;font-variant-numeric:tabular-nums;padding-top:.05rem}
 @media (max-width:480px){.news li{grid-template-columns:1fr;gap:.15rem}}
 
-/* "right now" row on home */
-.now{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.now div{display:flex;flex-direction:column;gap:.3rem;min-width:0}
-.now .k{color:var(--muted);font-size:.9rem}
-.now .v{font-weight:500}
 
 /* research themes */
 .themes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
@@ -220,7 +219,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
   .hero{grid-template-columns:1fr;padding-block:2rem 2.5rem}
   .hub-figure{max-width:340px}
   .portrait{width:112px;height:112px}
-  .themes,.two,.now{grid-template-columns:1fr}
+  .themes,.two{grid-template-columns:1fr}
   .pagehead.split{grid-template-columns:1fr;gap:1.5rem;padding-block:2.5rem 2rem}
   .about-split{grid-template-columns:1fr}
   .about-photo{max-width:280px}
@@ -229,5 +228,5 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
   .topic{grid-template-columns:1fr;gap:1rem}
   .timeline li{grid-template-columns:1fr;gap:.25rem}
   .bar .wrap{flex-wrap:wrap;padding-block:.6rem;gap:.4rem 1.25rem}
-  .bar nav{overflow-x:auto;max-width:100%}
+  .bar nav{flex-wrap:wrap;gap:.15rem 1.1rem;max-width:100%}
 }
