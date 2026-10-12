@@ -136,7 +136,7 @@ a.badge-cover:hover{background:var(--ink)}
 
 /* work with me */
 .work-intro{font-size:1.08rem;max-width:62ch}
-.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem 2rem}
+.services{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem 2rem}
 .service{display:flex;flex-direction:column;gap:.45rem;min-width:0;padding-top:1rem;border-top:3px solid var(--grid)}
 .service p{font-size:.98rem}
 .service .proof{color:var(--muted);font-size:.9rem;margin-top:auto;padding-top:.25rem}
