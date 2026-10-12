@@ -113,6 +113,18 @@ section{padding-block:3rem;border-top:1px solid var(--line);display:flex;flex-di
 a.badge-cover:hover{background:var(--ink)}
 .pubs .badge-cover{margin:.35rem 0 .3rem}
 
+/* journal cover */
+.pubs li.has-cover{grid-template-columns:3.5rem minmax(0,1fr) 64px}
+.pub-cover img,.feat-cover img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:3px;
+  box-shadow:0 4px 14px rgba(22,35,46,.12);transition:transform .2s ease}
+.pub-cover:hover img,.feat-cover:hover img{transform:translateY(-2px)}
+.featured{display:grid;grid-template-columns:180px minmax(0,1fr);gap:2rem;align-items:start}
+.feat-text{display:flex;flex-direction:column;gap:.75rem;min-width:0}
+.feat-meta{color:var(--muted);font-size:.95rem}
+.feat-title{font-weight:600;font-size:1.1rem}
+@media (max-width:600px){.featured{grid-template-columns:110px minmax(0,1fr);gap:1.1rem}.featured h2{font-size:1.5rem}}
+@media (prefers-reduced-motion:reduce){.pub-cover img,.feat-cover img{transition:none}}
+
 /* news */
 .news{list-style:none;margin:0;padding:0;max-width:80ch}
 .news li{display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:1rem;padding-block:.75rem;border-bottom:1px solid var(--line)}
