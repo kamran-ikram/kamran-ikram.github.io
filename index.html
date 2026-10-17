@@ -75,10 +75,7 @@
   ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
-<link rel="stylesheet" href="style.css?v=15">
+<link rel="stylesheet" href="style.css?v=16">
 </head>
 <body>
 
@@ -131,6 +128,7 @@
         <button type="button" role="tab" id="step-2" aria-selected="false"><span>Smart charging</span><span class="st-bar"><i></i></span></button>
       </div>
       <figcaption id="ev-cap">6 pm. Five neighbours get home and plug in their electric cars at the same time.</figcaption>
+      <button type="button" class="ev-replay" id="ev-replay" aria-hidden="true" tabindex="-1">↻ Play again</button>
     </figure>
   </div>
 
@@ -278,7 +276,16 @@
                cable: cable, dots: dots, car: car, bolt: bolt, socFill: socFill, pct: pct, kw: kw };
     });
 
-    var phase = 0, t = 0, gauge = BASE, last = null, running = true;
+    var phase = 0, t = 0, gauge = BASE, last = null, running = true, finished = false;
+    var replay = document.getElementById('ev-replay');
+    function finish() {
+      finished = true; t = PHASES[phase].dur;
+      replay.classList.add('show'); replay.removeAttribute('aria-hidden'); replay.removeAttribute('tabindex');
+    }
+    function restart(j) {
+      finished = false; replay.classList.remove('show'); replay.setAttribute('aria-hidden', 'true'); replay.setAttribute('tabindex', '-1');
+      setPhase(j);
+    }
     var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function ease(x) { x = Math.max(0, Math.min(1, x)); return 1 - Math.pow(1 - x, 3); }
@@ -333,7 +340,6 @@
           c.power = c.soc >= 99.5 ? 0 : FULL;
         } else if (p.key === 'done') {
           c.power = 0;
-          if (t > p.dur - 1100) c.y = lerp(PARK, START_Y, ease((t - (p.dur - 1100) - c.i * 90) / 900));
         }
       });
       if (p.key === 'smart') {
@@ -341,7 +347,7 @@
         else allocate();
       }
       cars.forEach(function (c) { c.soc = Math.min(100, c.soc + c.power * RATE * dt / 1000); c.flow += c.power * dt / 2600; });
-      if (t >= p.dur) setPhase((phase + 1) % PHASES.length);
+      if (t >= p.dur) { if (phase === PHASES.length - 1) finish(); else setPhase(phase + 1); }
     }
 
     function draw() {
@@ -376,7 +382,8 @@
     function loop(now) {
       if (last === null) last = now;
       var dt = Math.min(now - last, 50); last = now;
-      if (running) { step(dt); draw(); }
+      if (running && !finished) step(dt);
+      if (running) draw();
       requestAnimationFrame(loop);
     }
 
@@ -390,8 +397,9 @@
     }
 
     steps.forEach(function (b, j) {
-      b.addEventListener('click', function () { if (still) showStill(j); else setPhase(j); });
+      b.addEventListener('click', function () { if (still) showStill(j); else restart(j); });
     });
+    replay.addEventListener('click', function () { restart(0); });
 
     if (still) { showStill(2); return; }
     setPhase(0);
@@ -404,5 +412,6 @@
 
 <!-- Visitor stats: privacy-friendly, no cookies. Dashboard at https://kamranikram.goatcounter.com -->
 <script data-goatcounter="https://kamranikram.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>document.addEventListener("touchstart",function(){},{passive:true});</script>
 </body>
 </html>

@@ -2,29 +2,36 @@
 :root{
   --bg:#F3F6F5; --surface:#FFFFFF; --ink:#16232E; --muted:#526170;
   --line:#D5DEDC; --grid:#0E6B73; --grid-ink:#FFFFFF; --spark:#B97F0A; --logo-bg:#FFFFFF; --alert:#C2412D;
-  --font-display:"Newsreader",Georgia,"Times New Roman",serif;
-  --font-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI Variable Display","Segoe UI",system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI Variable Text","Segoe UI",system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  --ease-spring:cubic-bezier(.2,.9,.25,1.05);
+  --ease-out:cubic-bezier(.2,.8,.2,1);
   color-scheme:light only;
 }
 
 *{box-sizing:border-box}
 html{background:var(--bg)}
 body{margin:0;background:var(--bg);color:var(--ink);
-  font:400 17px/1.65 var(--font-body)}
+  font:400 1.0625rem/1.6 var(--font-body);letter-spacing:-.003em;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
 a{color:var(--grid);text-underline-offset:3px}
 a:focus-visible{outline:2px solid var(--spark);outline-offset:3px;border-radius:2px}
 img{max-width:100%}
 .wrap{max-width:1040px;margin:0 auto;padding-inline:16px}
-h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.15;margin:0;text-wrap:balance}
-h2{font-size:1.9rem}
-h3{font-size:1.2rem}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;margin:0;text-wrap:balance}
+h1{font-weight:700;line-height:1.05;letter-spacing:-.028em}
+h2{font-size:1.85rem;line-height:1.12;letter-spacing:-.02em}
+h3{font-size:1.15rem;line-height:1.25;letter-spacing:-.01em}
 p{margin:0;max-width:68ch}
 .stack{display:flex;flex-direction:column;gap:1rem}
 
 /* top bar */
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+@supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .bar{background:rgba(243,246,245,.72);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom-color:rgba(22,35,46,.08)}
+}
 .bar .wrap{display:flex;gap:1.25rem;align-items:center;min-height:58px}
-.bar .me{font-family:var(--font-display);font-weight:600;font-size:1.15rem;color:var(--ink);text-decoration:none;margin-right:auto;white-space:nowrap}
+.bar .me{font-family:var(--font-display);font-weight:600;font-size:1.1rem;letter-spacing:-.015em;color:var(--ink);text-decoration:none;margin-right:auto;white-space:nowrap}
 .bar nav{display:flex;gap:1.1rem}
 .bar nav a{white-space:nowrap;text-decoration:none;font-size:.95rem;color:var(--muted);padding-block:.2rem;border-bottom:2px solid transparent}
 .bar nav a:hover{color:var(--ink)}
@@ -54,11 +61,14 @@ section{padding-block:3rem;border-top:1px solid var(--line);display:flex;flex-di
 .hero > div{display:flex;flex-direction:column;gap:1rem;min-width:0}
 .portrait{width:140px;height:140px;aspect-ratio:1;flex:none;align-self:flex-start;border-radius:50%;object-fit:cover;display:block;
   border:3px solid var(--surface);box-shadow:0 0 0 2px var(--grid);margin-bottom:.5rem}
-.hero h1{font-size:clamp(2.6rem,6vw,4.4rem);letter-spacing:-.01em}
+.hero h1{font-size:clamp(2.6rem,6vw,4.25rem)}
 .hero .role{color:var(--muted);font-size:1.1rem}
 .hero .lede{font-size:1.3rem;max-width:34ch}
 .links{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.5rem}
-.links a{border:1px solid var(--line);background:var(--surface);padding:.45rem .95rem;border-radius:999px;text-decoration:none;font-size:.95rem}
+.links a{border:1px solid var(--line);background:var(--surface);padding:.5rem 1rem;border-radius:999px;text-decoration:none;font-size:.95rem;font-weight:500;
+  transition:transform .35s var(--ease-spring),opacity .2s var(--ease-out);-webkit-tap-highlight-color:transparent}
+.links a:hover{opacity:.85}
+.links a:active{transform:scale(.96);transition-duration:.08s}
 .links a.primary{background:var(--grid);border-color:var(--grid);color:var(--grid-ink);font-weight:500}
 
 /* hero drawing: five EVs plug in at 6 pm */
@@ -169,6 +179,25 @@ a.badge-cover:hover{background:var(--ink)}
 .home-news .news li:first-child{border-top:0}
 .home-news .news li:last-child{border-bottom:0}
 .home-news time{font-size:.8rem}
+
+/* Apple-style press feedback on other controls */
+.cite,.day-steps button,.pub-cover,.feat-cover,.orgs a{-webkit-tap-highlight-color:transparent}
+.cite{transition:transform .35s var(--ease-spring)}
+.cite:active{transform:scale(.95);transition-duration:.08s}
+.orgs .logo{transition:transform .35s var(--ease-spring),border-color .2s ease}
+.orgs a:hover .logo{transform:translateY(-2px)}
+.orgs a:active .logo{transform:scale(.97);transition-duration:.08s}
+.ev-replay{display:inline-flex;align-items:center;gap:.4rem;align-self:flex-start;padding:.4rem .9rem;border:1px solid var(--line);border-radius:999px;
+  background:var(--surface);color:var(--grid);font:500 .88rem var(--font-body);cursor:pointer;opacity:0;pointer-events:none;
+  transition:opacity .3s var(--ease-out),transform .35s var(--ease-spring);-webkit-tap-highlight-color:transparent}
+.ev-replay.show{opacity:1;pointer-events:auto}
+.ev-replay:active{transform:scale(.95);transition-duration:.08s}
+.ev-replay:focus-visible{outline:2px solid var(--spark);outline-offset:2px}
+
+/* accessibility settings Apple asks you to honour */
+@media (prefers-reduced-transparency:reduce){.bar{background:var(--bg)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+@media (prefers-contrast:more){:root{--muted:#33404C;--line:#8A9A99}.bar{border-bottom-color:var(--line)!important}}
+@media (prefers-reduced-motion:reduce){.links a,.cite,.orgs .logo,.ev-replay{transition:opacity .2s ease!important}.links a:active,.cite:active,.orgs a:active .logo,.orgs a:hover .logo{transform:none}}
 
 /* news */
 .news{list-style:none;margin:0;padding:0;max-width:80ch}
