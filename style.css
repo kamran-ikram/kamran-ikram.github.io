@@ -153,12 +153,6 @@ a.badge-cover:hover{background:var(--ink)}
 .service .proof span,.tools span{color:var(--ink);font-weight:600}
 .tools{font-size:.95rem;color:var(--muted)}
 #work .links{margin-top:0}
-@media (max-width:820px){
-  .home-cols,.home-cols.news-left{display:flex;flex-direction:column;gap:0}
-  .home-main{display:contents}
-  .home-main > section{order:3}
-  .home-main > section:first-child{order:1}
-  .home-news,.home-cols.news-left .home-news{order:2;position:static;margin-block:0 1rem}.services{grid-template-columns:1fr}}
 
 /* page not found */
 .notfound{padding-block:4.5rem 5rem}
@@ -179,6 +173,16 @@ a.badge-cover:hover{background:var(--ink)}
 .home-news .news li:first-child{border-top:0}
 .home-news .news li:last-child{border-bottom:0}
 .home-news time{font-size:.8rem}
+/* phones and small tablets: one column — About, then News, then everything else */
+@media (max-width:820px){
+  .home-cols,.home-cols.news-left{display:flex;flex-direction:column;gap:0}
+  .home-main{display:contents}
+  .home-main > section{order:3}
+  .home-main > section:first-child{order:1}
+  .home-main .about-split{grid-template-columns:1fr;gap:1.25rem}
+  .home-news,.home-cols.news-left .home-news{order:2;position:static;margin-block:0 2rem}
+  .services{grid-template-columns:1fr}
+}
 
 /* Apple-style press feedback on other controls */
 .cite,.day-steps button,.pub-cover,.feat-cover,.orgs a{-webkit-tap-highlight-color:transparent}
