@@ -250,7 +250,7 @@ a.badge-cover:hover{background:var(--ink)}
 
 /* organisations strip */
 .orgs-intro{color:var(--muted)}
-.orgs{list-style:none;margin:.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1rem}
+.orgs{list-style:none;margin:.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
 .orgs li{min-width:0}
 .orgs a{display:flex;flex-direction:column;gap:.6rem;height:100%;text-decoration:none;color:var(--ink)}
 .orgs .logo{display:flex;align-items:center;justify-content:center;height:104px;padding:12px 16px;
@@ -260,7 +260,6 @@ a.badge-cover:hover{background:var(--ink)}
 .orgs .lg-swinburne{height:54px}
 .orgs .lg-csiro{height:62px}
 .orgs .lg-siemens{height:22px}
-.orgs .lg-federation{height:40px}
 .orgs .lg-amu{height:46px}
 .orgs .org-name{font-size:.88rem;font-weight:500;line-height:1.3}
 .orgs .org-meta{font-size:.82rem;color:var(--grid);font-weight:500;margin-top:-.4rem}
@@ -278,7 +277,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
   .about-split{grid-template-columns:1fr}
   .about-photo{max-width:280px}
   .orgs{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .orgs li:last-child{grid-column:1/-1}
   .topic{grid-template-columns:1fr;gap:1rem}
   .timeline li{grid-template-columns:1fr;gap:.25rem}
   .bar .wrap{flex-wrap:wrap;padding-block:.6rem;gap:.4rem 1.25rem}
